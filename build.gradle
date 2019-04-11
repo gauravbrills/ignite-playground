@@ -6,6 +6,10 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 
+ext{
+ igniteVersion = "2.7.0"
+}
+
 group = 'gauravbrills.ignite'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -21,6 +25,8 @@ dependencies {
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 	implementation 'org.springframework.data:spring-data-rest-hal-browser'
+	implementation "org.apache.ignite:ignite-spring-data:$igniteVersion"
+	implementation "org.apache.ignite:ignite-slf4j:$igniteVersion"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }
