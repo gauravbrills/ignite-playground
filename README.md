@@ -1,5 +1,5 @@
-# Ignite Playground :)
+# Ignite Playground ....
 
-A demonstration various features of Apache Ignite in kotlin .
+A demonstration of various features of Apache Ignite in kotlin .
 
 
