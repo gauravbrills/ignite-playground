@@ -14,19 +14,21 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
 import java.util.Arrays
+import org.apache.ignite.lifecycle.LifecycleBean
 
 @SpringBootApplication
 @Import(IgniteConfiguration::class)
 open class IgnitePlaygroundApplication {
-	
+
 	@Bean("igniteInstance")
-	open fun igniteInstance(): Ignite {
+	open fun igniteInstance(lifeCycle: LifecycleBean): Ignite {
 		val cache = CacheConfiguration<String, String>("test")
 		cache.setIndexedTypes(String::class.java, String::class.java)
 
 		val config = IgniteConfiguration().//
 			setIgniteInstanceName("mydataGrid").//
 			setPeerClassLoadingEnabled(true).// Code will run on any node without any need to deploy on client nodes.
+			setLifecycleBeans(lifeCycle).//
 			setRebalanceThreadPoolSize(1).//
 			setPublicThreadPoolSize(2).//
 			setSystemThreadPoolSize(2).//
