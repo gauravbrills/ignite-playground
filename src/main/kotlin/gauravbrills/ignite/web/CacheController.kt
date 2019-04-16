@@ -48,9 +48,17 @@ class CacheController(private val ignite: Ignite) {
 
 	@GetMapping("/{cacheName}/freeText", produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
 	@ResponseBody
-	fun freeText(@PathVariable cacheName: String, @RequestParam q: String): Mono<List<Cache.Entry<String, Trade>>> {
+	fun freeText(@PathVariable cacheName: String, @RequestParam q: String): Mono<LinkedList<Map<String, Trade>>> {
+		val data = LinkedList<Map<String, Trade>>();
 		val cursor = ignite.getOrCreateCache<String, Any>(cacheName).withKeepBinary<String, Any>()
 			.query(TextQuery<String, Trade>(Trade::class.java, q))
-		return Mono.fromCallable { cursor.getAll() }
+		val iter = cursor.iterator();
+		while (iter.hasNext()) {
+			val row = HashMap<String, Trade>()
+			val next = iter.next()
+			row.put(next.getKey(), next.getValue());
+			data.add(row);
+		}
+		return Mono.fromCallable { data }
 	}
 }

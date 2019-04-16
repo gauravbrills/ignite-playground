@@ -5,19 +5,20 @@ import org.apache.ignite.Ignition
 import org.apache.ignite.configuration.CacheConfiguration
 import org.apache.ignite.configuration.ClientConnectorConfiguration
 import org.apache.ignite.configuration.IgniteConfiguration
+import org.apache.ignite.lifecycle.LifecycleBean
 import org.apache.ignite.logger.slf4j.Slf4jLogger
 import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi
 import org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder
+import org.apache.ignite.springdata20.repository.config.EnableIgniteRepositories
 import org.springframework.boot.Banner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
 import java.util.Arrays
-import org.apache.ignite.lifecycle.LifecycleBean
-import IgniteConfiguraiton
 
 @SpringBootApplication
+@EnableIgniteRepositories("gauravbrills.ignite.cache")
 @Import(IgniteConfiguration::class)
 open class IgnitePlaygroundApplication {
 
