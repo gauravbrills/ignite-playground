@@ -9,6 +9,6 @@ interface TradeCacheRespository : IgniteRepository<Trade, String> {
 
 	fun findByIsin(isin: String): List<Trade>;
 	
-	@Query("SELECT id FROM Person WHERE lower(comment) like '%sell%'")
+	@Query("SELECT * FROM Trade WHERE lower(comment) like '%sell%'")
 	fun findWhereInstructionToSell( ): List<Trade>;
 }
