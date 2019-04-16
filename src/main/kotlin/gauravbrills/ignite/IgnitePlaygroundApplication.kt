@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Import
 import java.util.Arrays
 import org.apache.ignite.lifecycle.LifecycleBean
+import IgniteConfiguraiton
 
 @SpringBootApplication
 @Import(IgniteConfiguration::class)
@@ -35,8 +36,10 @@ open class IgnitePlaygroundApplication {
 			setFailureDetectionTimeout(30_000).// When node failure should be kicked in useful on a distributed cluster.
 			setClientConnectorConfiguration(ClientConnectorConfiguration().setJdbcEnabled(true).setPort(1521))
 			.// useful when using for Jdbc
-				setCacheConfiguration(cache).//
-				setDiscoverySpi(discoverSpi()).//  Discovery SPI
+				setCacheConfiguration(
+					*IgniteConfigurationSupport.getCacheConfiguration(arrayOf("gauravbrills.ignite.cache")).toTypedArray()
+				)
+			.setDiscoverySpi(discoverSpi()).//  Discovery SPI
 				setGridLogger(Slf4jLogger()).//
 				setConsistentId("node-1");
 

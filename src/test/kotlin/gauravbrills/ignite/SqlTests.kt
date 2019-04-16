@@ -37,6 +37,7 @@ open class SqlTests : IgnitePlagroundApplicationTests() {
 		tradeCache.clear()
 		Flux.just(
 			Trade(
+				tradeId = "1",
 				isin = "US-000402625-0",
 				symbol = "Apple Inc",
 				price = BigDecimal(198.87),
@@ -44,6 +45,7 @@ open class SqlTests : IgnitePlagroundApplicationTests() {
 				comment = "Sell It"
 			),
 			Trade(
+				tradeId = "2",
 				isin = "JP-000K0VF05-4",
 				symbol = "Honda Motor",
 				price = BigDecimal(3085.00),
@@ -51,6 +53,7 @@ open class SqlTests : IgnitePlagroundApplicationTests() {
 				comment = "Sell It"
 			),
 			Trade(
+				tradeId = "3",
 				isin = "US38259P5089",
 				symbol = "Alphabet",
 				price = BigDecimal(1223.99),
@@ -58,6 +61,7 @@ open class SqlTests : IgnitePlagroundApplicationTests() {
 				comment = "Buy It, on the rise"
 			),
 			Trade(
+				tradeId = "4",
 				isin = "US0231351067",
 				symbol = "Amazon Inc",
 				price = BigDecimal(1330),

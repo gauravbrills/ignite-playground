@@ -1,26 +1,24 @@
 package gauravbrills.ignite.cache
 
-import gauravbrills.ignite.IgniteCache
 import org.apache.ignite.cache.query.annotations.QuerySqlField
 import org.apache.ignite.cache.query.annotations.QueryTextField
-import org.springframework.data.annotation.Id
 import java.math.BigDecimal
+import com.sun.javafx.beans.IDProperty
+import org.springframework.data.annotation.Id
+import gauravbrills.ignite.IgniteCache
 
-@IgniteCache(value = "tradeCache", backups = 0)
-data class Trade(
-	@Id @QuerySqlField(index = true)
-	var tradeId: String? = null,
+@IgniteCache(value= "securityCache", backups = 0)
+data class Security(
+	@Id
 	@QuerySqlField(index = true)
 	var isin: String? = null,
 	@QuerySqlField(index = true)
 	var symbol: String? = null,
+	// Equity etc
 	@QuerySqlField(index = true)
-	var price: BigDecimal,
+	var type: String? = null,
 	@QuerySqlField(index = true)
-	var volume: Int,
-	// Text query lucene index shall be created
-	@QueryTextField
-	var comment: String
+	var marketSegment: String? = null
 ) {
 
 }
