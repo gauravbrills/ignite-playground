@@ -16,16 +16,33 @@ import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
 import java.util.LinkedList
 import javax.cache.Cache
+import gauravbrills.ignite.TaskRunner
+import org.apache.ignite.cluster.ClusterNode
 
 @RestController
 @RequestMapping("/caches")
-class CacheController(private val ignite: Ignite) {
+class CacheController(private val ignite: Ignite, private val taskRunner: TaskRunner) {
 
 
 	@GetMapping("/", produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
 	@ResponseBody
 	fun cache(): Mono<Collection<String>> {
 		return Mono.fromCallable { ignite.cacheNames() }
+	}
+
+
+	// Creates Dynamic Cache with BinarObject
+
+	@PostMapping("/", produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
+	@ResponseBody
+	fun createDynamicCache(schema: List<Map<String, String>>) {
+
+	}
+
+	@PostMapping("/runDistributedTask", produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])
+	@ResponseBody
+	fun runDistributedTask() {
+		 
 	}
 
 	@PostMapping("/{cacheName}/query", produces = [MediaType.APPLICATION_STREAM_JSON_VALUE])

@@ -28,6 +28,7 @@ dependencies {
 	// Spring data Ignite
 	implementation "org.apache.ignite:ignite-spring-data_2.0:$igniteVersion"
 	implementation "org.apache.ignite:ignite-slf4j:$igniteVersion"
+	implementation "org.apache.ignite:ignite-aws:$igniteVersion"
 	// Be Careful about this in Ignite
 	implementation "com.h2database:h2:1.4.197"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

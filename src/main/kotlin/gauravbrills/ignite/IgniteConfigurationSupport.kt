@@ -17,7 +17,7 @@ import javax.cache.expiry.Duration
  */
 class IgniteConfigurationSupport() {
 	companion object static {
-		fun getCacheConfiguration(basePackages: Array<String>): List<CacheConfiguration<*,*> > {
+		fun getCacheConfiguration(basePackages: Array<String>): List<CacheConfiguration<*, *>> {
 			var cacheConfigurations = arrayListOf<CacheConfiguration<Any, Any>>();
 
 			var scanningProvider =
@@ -51,6 +51,10 @@ class IgniteConfigurationSupport() {
 				.setIndexedTypes(String::class.java, cache)
 				.setRebalanceBatchSize(1048576)
 				.setRebalanceThrottle(0)
+
+			if (annotation.dataRegion.isNotBlank()) {
+				config.setDataRegionName(annotation.dataRegion)
+			}
 
 			if (annotation.onHeapCache) {
 				config.setOnheapCacheEnabled(annotation.onHeapCache)

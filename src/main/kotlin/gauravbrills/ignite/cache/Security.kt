@@ -7,7 +7,7 @@ import com.sun.javafx.beans.IDProperty
 import org.springframework.data.annotation.Id
 import gauravbrills.ignite.IgniteCache
 
-@IgniteCache(value= "securityCache", backups = 0)
+@IgniteCache(value= "securityCache", backups = 0, dataRegion="small")
 data class Security(
 	@Id
 	@QuerySqlField(index = true)
